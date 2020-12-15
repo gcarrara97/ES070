@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ES070 - Laboratório de Sistemas Embarcados</title>
+        <style>
+            body {
+                background-color: rgb(8, 0, 53);
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                text-align: center;
+            }
+            div#cabecalho {
+                background-color: rgb(10, 10, 10);
+                width: 100%;
+                overflow: hidden;
+                line-height: 30px;
+            }
+            button {
+                margin: 10px 10px 10px;
+                font-size: medium;
+                width: 300px;
+                height: 30px;
+            }
+            button#btnreferencia {
+                width: 528px;
+            }
+            input {
+                width: 200px;
+                font-size: medium;
+            }
+            div#entrada {
+                border-style: solid;
+                border-color: white;
+                margin: 10px 0px 10px;
+            }
+            div#saida {
+                border-style: solid;
+                border-color: white;
+                margin: 10px 0px 10px;
+            }
+            form {
+                margin: 10px 0px 10px;
+            }
+            .square {
+                border-style: solid;
+                border-left: white;
+                border-right: white;
+                border-bottom: white;
+                height: 50px;
+                width: 50px;
+                position: absolute;
+                margin: -1em;
+                background-color: red;
+                transform: rotate(0deg);
+            }
+            .circle-container {
+                position: relative;
+                width: 20px;
+                height: 20px;
+                padding: 2.8em;
+                border: dashed 1px;
+                border-radius: 50%;
+                margin: 1.75em auto 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cabecalho">
+            <h1>ES070 - Cubesat | Dashboard</h1>
+        </div>
+        <div id="corpo">
+            <div id="entrada">
+                <center>
+                    <h2>Configurações de entrada</h2>
+                    <button id="btnestabilizacao" onclick="location.href='/index.html'">Desativa estabilização</button>
+                    <text>Estabilização ativada</text>
+                </center>
+            </div>
+            <div id="saida">
+                <center>
+                    <h2>Dados de saída</h2>
+                    <form oninput="veloang.value=parseInt(posicao.value)">
+                        <text>Velocidade angular (º/s): </text>
+                        <span id="saidaVelocidade">0</span>
+                    </form>
+                    <p>
+                    <form oninput="posicaoang.value=parseInt(posicao.value)">
+                        <text>Posição angular (º): </text>
+                        <span id="saidaPosicao">0</span>
+                    </form>
+                    <p>
+                    <div class="circle-container">
+                        <div class="square" id="cubesat"></div>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <script>
+            setInterval(function() {
+                getPosicao();
+                getVel();
+            }, 500); // atualiza a cada 500 ms
+
+            function getPosicao() {
+                var a = Math.floor(Math.random() * 100);
+                document.getElementById("saidaPosicao").innerHTML = a;
+                document.getElementById("cubesat").style.transform = 'rotate('+a+'deg)';
+            };
+
+            function getVel() {
+                var a = Math.floor(Math.random() * 100);
+                document.getElementById("saidaVelocidade").innerHTML = a;
+            };
+        </script>
+    </body>
+</html>
